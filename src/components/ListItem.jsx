@@ -26,6 +26,9 @@ const ListItem = (props) => {
   return (
     <>
       <div className="eventCard__container container">
+        <button className="event__delete__btn">
+          <div>✖</div>
+        </button>
         <h1 className="eventCard__heading">{title}</h1>
         <h2 className="eventCard__date">{getDate(date)}</h2>
         <ul className="eventCard__countdown">
@@ -69,10 +72,6 @@ const ListItem = (props) => {
           </li>
         </ul>
         <p>{info}</p>
-
-        <button className="event__delete__btn">
-          <div>✖</div>
-        </button>
       </div>
     </>
   );
