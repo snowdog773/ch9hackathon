@@ -26,7 +26,7 @@ const ListItem = (props) => {
   return (
     <>
       <div className="eventCard__container container">
-        <button className="event__delete__btn">
+        <button className="event__delete__btn" onClick={() => props.deleteItem(props.index)}>
           <div>✖</div>
         </button>
         <h1 className="eventCard__heading">{title}</h1>

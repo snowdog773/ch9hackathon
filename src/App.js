@@ -30,6 +30,8 @@ class App extends Component {
     return spread.map((e, index) => {
       return (
         <ListItem
+          index={index}
+          deleteItem={this.deleteItem}
           eventData={e}
           key={index}
           currentTime={this.state.currentTime}
@@ -37,6 +39,12 @@ class App extends Component {
       );
     });
   };
+
+  deleteItem = (index) => {
+    const copy = [...this.state.event];
+    copy.splice(index, 1);
+    this.setState({ event: copy });
+  }
 
   render() {
     return (
