@@ -20,21 +20,66 @@ const ListItem = (props) => {
 
   useEffect(() => timer(), []);
 
+  const getDate = (date) => {
+    const newFormat = new Date(date).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return newFormat;
+  };
+
   return (
     <>
-      <div>
-        <h1>{title}</h1>
-        <h2>{date}</h2>
-        <h3>
-          Happening in:
-          <span>Years: {countdown && countdown.years} </span>
-          <span>Weeks: {countdown && Math.floor(countdown.days / 7)} </span>
-          <span>Days: {countdown && countdown.days % 7} </span>
-          <span>Hours: {countdown && countdown.hours} </span>
-          <span>Minutes: {countdown && countdown.mins} </span>
-          <span>Seconds: {countdown && countdown.seconds} </span>
-        </h3>
+      <div className="eventCard__container container">
+        <h1 className="eventCard__heading">{title}</h1>
+        <h2 className="eventCard__date">{getDate(date)}</h2>
+        <ul className="eventCard__countdown">
+          <li>
+            Years
+            <span className="countdown__number">
+              {countdown && countdown.years}
+            </span>
+          </li>
+          <li>
+            Weeks
+            <span className="countdown__number">
+              {countdown && Math.floor(countdown.days / 7)}
+            </span>
+          </li>
+          <li>
+            Days
+            <span className="countdown__number">
+              {countdown && countdown.days % 7}
+            </span>
+          </li>
+          <li>
+            Hours
+            <span className="countdown__number">
+              {countdown && countdown.hours}
+            </span>
+          </li>
+          <li>
+            Minutes
+            <span className="countdown__number">
+              {" "}
+              {countdown && countdown.mins}{" "}
+            </span>
+          </li>
+          <li>
+            Seconds
+            <span className="countdown__number">
+              {" "}
+              {countdown && countdown.seconds}{" "}
+            </span>
+          </li>
+        </ul>
         <p>{info}</p>
+
+        <button className="event__delete__btn">
+          <div>✖</div>
+        </button>
       </div>
     </>
   );

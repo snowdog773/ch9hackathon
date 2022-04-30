@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Form from "./components/Form";
 import ListItem from "./components/ListItem";
+import logo__banner from "./assets/logo_banner_v4.png";
+import "./App.css";
 
 class App extends Component {
   state = { event: [], currentTime: undefined };
@@ -37,9 +39,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <h1>Date Reminder App</h1>
-        <Form getEvent={this.getEvent} />
-        {this.orderAndRender()}
+        <div className="body__container">
+          <h1 className="logo__header">
+            <img src={logo__banner} alt="logo banner" />
+          </h1>
+          <Form getEvent={this.getEvent} />
+
+          <div className="allEvents__container">{this.orderAndRender()}</div>
+        </div>
       </>
     );
   }

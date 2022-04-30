@@ -1,38 +1,129 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li {
+  list-style: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  max-width: 800px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.body__container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo__header {
+  height: 200px;
+  position: relative;
+  top: -50px;
+}
+
+.logo__header > img {
+  height: 150%;
+}
+
+/* FORM */
+label {
+  font-weight: bold;
+  padding: 10px;
+}
+
+.input__textbox {
+  border: solid 1px rgb(64, 0, 124);
+  border-radius: 5px;
+  height: 20px;
+  padding: 2px 5px;
+}
+
+.form__heading {
+  margin: 10px;
+}
+
+.form__container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  box-shadow: -2px 4px 25px -4px rgba(30, 30, 60, 0.25);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  width: 500px;
+}
+
+.form__section {
+  margin: 10px 0;
+}
+
+.addEvent__btn {
+  width: auto;
+  padding: 5px 10px;
+  border: solid 1.5px white;
+  border-radius: 5px;
+  background-color: rgb(64, 0, 124);
   color: white;
+  font-weight: bold;
+  font-size: 1em;
 }
 
-.App-link {
-  color: #61dafb;
+.allEvents__container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+/* EVENT CARD */
+
+.eventCard__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -2px 4px 25px -4px rgba(30, 30, 60, 0.815);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #a251ffb9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.eventCard__heading {
+  margin: 0;
+}
+
+.eventCard__date {
+  padding: 20px 0 10px;
+}
+
+.eventCard__countdown {
+  display: flex;
+  padding: 20px 10px;
+}
+
+.eventCard__countdown > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.event__delete__btn {
+  background-color: pink;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  padding: 5px;
+  position: absolute;
+  right: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.countdown__number {
+  display: block;
+  font-size: 1.5em;
 }
