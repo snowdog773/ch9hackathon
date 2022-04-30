@@ -5,9 +5,12 @@ import logo__banner from "./assets/logo_banner_v4.png";
 import "./App.css";
 
 class App extends Component {
-  state = { event: [], currentTime: Date.now() };
+  state = { event: JSON.parse(localStorage.getItem("eventData")) || [] , currentTime: Date.now()  };
 
   componentDidMount() {
+    // const saveData = JSON.parse(localStorage.getItem("eventData")) || [] 
+    // this.setState({event: saveData})
+
     setInterval(() => {
       const updatedTime = new Date().getTime();
       this.setState({ currentTime: updatedTime });
@@ -17,6 +20,7 @@ class App extends Component {
   getEvent = (data) => {
     const spread = [...this.state.event];
     spread.push(data);
+    localStorage.setItem("eventData", JSON.stringify(spread));
     this.setState({ event: spread });
   };
 
@@ -40,10 +44,11 @@ class App extends Component {
     });
   };
 
-  deleteItem = (index) => {
+  deleteItem = (title) => {
     const copy = [...this.state.event];
-    copy.splice(index, 1);
-    this.setState({ event: copy });
+    const copied = copy.filter(data => data.title !== title);
+    this.setState({ event: copied });
+    localStorage.setItem("eventData", JSON.stringify(copied));
   }
 
   render() {
@@ -55,7 +60,7 @@ class App extends Component {
           </h1>
           <Form getEvent={this.getEvent} />
 
-          <div className="allEvents__container">{this.orderAndRender()}</div>
+          <div className="allEvents__container">{this.state.event && this.orderAndRender()}</div>
         </div>
       </>
     );

@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import subtractTime from "../utils/subtract-time.js";
 
 const ListItem = (props) => {
-  const { title, date, recurring, info } = props.eventData;
+  const { title, date, info } = props.eventData;
   const [countdown, setCountdown] = useState();
+  const [unix, setUnix] = useState();
 
   const calculateDiff = () => {
     const unixDate = new Date(date).getTime() - props.currentTime;
     const convertedTime = subtractTime(unixDate);
     setCountdown(convertedTime);
+    setUnix(unixDate);
   };
 
-  useEffect(() => calculateDiff(), [countdown]);
+  useEffect(() => calculateDiff(), [props.currentTime]);
 
   const getDate = (date) => {
     const newFormat = new Date(date).toLocaleDateString("en-GB", {
@@ -26,11 +28,12 @@ const ListItem = (props) => {
   return (
     <>
       <div className="eventCard__container container">
-        <button className="event__delete__btn" onClick={() => props.deleteItem(props.index)}>
+        <button className="event__delete__btn" onClick={() => props.deleteItem(title)}>
           <div>✖</div>
         </button>
         <h1 className="eventCard__heading">{title}</h1>
         <h2 className="eventCard__date">{getDate(date)}</h2>
+        {unix > 0 ?
         <ul className="eventCard__countdown">
           <li>
             Years
@@ -70,7 +73,7 @@ const ListItem = (props) => {
               {countdown && countdown.seconds}{" "}
             </span>
           </li>
-        </ul>
+        </ul> : <p>This date has happened</p>}
         <p>{info}</p>
       </div>
     </>

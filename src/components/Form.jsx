@@ -40,14 +40,6 @@ class Form extends Component {
                 this.setState({ ...this.state, date: e.target.value })
               }
             ></input>
-            <label htmlFor="recurring">Click for Recurring Event</label>
-            <input
-              type="checkbox"
-              id="recurring"
-              onChange={(e) =>
-                this.setState({ ...this.state, recurring: e.target.checked })
-              }
-            ></input>
           </div>
 
           <div className="form__bottom form__section">
