@@ -1,17 +1,31 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 li {
   list-style: none;
 }
 
-.container {
-  max-width: 800px;
+.eventCard__container.container {
+  width: 100%;
+}
+.form__container.container {
+  width: 80%;
 }
 
 .body__container {
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -21,11 +35,11 @@ li {
 .logo__header {
   height: 200px;
   position: relative;
-  top: -50px;
+  top: -15px;
 }
 
 .logo__header > img {
-  height: 150%;
+  height: 110%;
 }
 
 /* FORM */
@@ -50,10 +64,13 @@ label {
   flex-direction: column;
   align-items: center;
   box-shadow: -2px 4px 25px -4px rgba(30, 30, 60, 0.25);
-  margin: 20px;
+  margin-inline: 20px;
   padding: 20px;
   border-radius: 20px;
-  width: 500px;
+}
+
+.form__middle > input {
+  cursor: pointer;
 }
 
 .form__section {
@@ -61,20 +78,23 @@ label {
 }
 
 .addEvent__btn {
+  cursor: pointer;
   width: auto;
   padding: 5px 10px;
   border: solid 1.5px white;
-  border-radius: 5px;
-  background-color: rgb(64, 0, 124);
   color: white;
   font-weight: bold;
   font-size: 1em;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #e6adb7, #ffcdd9);
+  box-shadow: 6px 6px 13px #c998a0, -6px -6px 13px #ffe8f6;
 }
 
 .allEvents__container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 /* EVENT CARD */
 
@@ -87,6 +107,9 @@ label {
   padding: 20px;
   border-radius: 20px;
   background-color: #a251ffb9;
+
+  opacity: 1;
+  animation: fadeIn ease-in 1 0.5s;
 }
 
 .eventCard__date {
@@ -96,13 +119,15 @@ label {
 .eventCard__countdown {
   display: flex;
   padding: 20px 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .eventCard__countdown > li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 20px;
+  margin: 0 5px;
 }
 
 .event__delete__btn {
@@ -112,7 +137,7 @@ label {
   border-radius: 50px;
   padding: 5px;
   position: relative;
-  right: -250px;
+  right: -50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,4 +147,33 @@ label {
 .countdown__number {
   display: block;
   font-size: 1.5em;
+}
+
+/* MEDIA QUERY */
+
+@media screen and (min-width: 630px) {
+  .logo__header {
+    top: -50px;
+  }
+
+  .logo__header > img {
+    height: 160%;
+  }
+
+  .event__delete__btn {
+    position: relative;
+    right: -250px;
+  }
+
+  .container {
+    max-width: 500px;
+  }
+
+  .eventCard__countdown {
+    flex-wrap: unset;
+  }
+
+  .eventCard__countdown > li {
+    margin: 0 20px;
+  }
 }

@@ -3,7 +3,6 @@ class Form extends Component {
   state = {
     title: "",
     date: undefined,
-    recurring: false,
     info: "",
     minDate: undefined,
   };
@@ -56,9 +55,11 @@ class Form extends Component {
           </div>
           <button
             className="addEvent__btn"
-            onClick={() => {
+            onClick={(e) => {
               if (!this.state.title || !this.state.date) return;
-              else return this.props.getEvent(this.state);
+              else {
+                this.props.getEvent(this.state);
+              }
             }}
           >
             Submit
