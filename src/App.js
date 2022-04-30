@@ -3,10 +3,10 @@ import Form from "./components/Form";
 import ListItem from "./components/ListItem";
 
 class App extends Component {
-  state = { event: [], currentTime: undefined};
+  state = { event: [], currentTime: undefined };
 
   componentDidMount() {
-    this.setState({currentTime: Date.now()})
+    this.setState({ currentTime: Date.now() });
   }
 
   getEvent = (data) => {
@@ -15,21 +15,31 @@ class App extends Component {
     this.setState({ event: spread });
   };
 
-  // minDate = new Date(this.state.date).toLocaleDateString("en-GB", {
-  //   year: "numeric",
-  //   month: "numeric",
-  //   day: "numeric",
-  // });
+  orderAndRender = () => {
+    const spread = [...this.state.event];
+    spread.sort((a, b) => {
+      const unixA = new Date(a.date).getTime();
+      const unixB = new Date(b.date).getTime();
+      return unixA - unixB;
+    });
+    return spread.map((e, index) => {
+      return (
+        <ListItem
+          index={index}
+          eventData={e}
+          key={index}
+          currentTime={this.state.currentTime}
+        />
+      );
+    });
+  };
 
   render() {
-    console.log(this.state);
     return (
       <>
         <h1>Date Reminder App</h1>
-        <Form getEvent={this.getEvent}/>
-        {this.state.event.map((e, index) => {
-          return <ListItem eventData={e} key={index} currentTime={this.state.currentTime} />;
-        })}
+        <Form getEvent={this.getEvent} />
+        {this.orderAndRender()}
       </>
     );
   }

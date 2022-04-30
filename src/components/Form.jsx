@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 class Form extends Component {
-  state = { title: "", date: undefined, recurring: false, info: "", minDate: undefined };
-
+  state = {
+    title: "",
+    date: undefined,
+    recurring: false,
+    info: "",
+    minDate: undefined,
+  };
 
   componentDidMount() {
     const date = new Date();
-    this.setState({minDate: date.toISOString().slice(0, 10)})
+    this.setState({ minDate: date.toISOString().slice(0, 10) });
   }
 
   render() {
-    
     return (
       <>
         <label htmlFor="title">Event Title</label>
@@ -45,11 +49,14 @@ class Form extends Component {
             this.setState({ ...this.state, info: e.target.value })
           }
         ></input>
-        <button onClick={() => { if(!this.state.title || !this.state.date) 
-                                  return 
-                              else 
-                                return this.props.getEvent(this.state)
-        }}>Submit</button>
+        <button
+          onClick={() => {
+            if (!this.state.title || !this.state.date) return;
+            else return this.props.getEvent(this.state);
+          }}
+        >
+          Submit
+        </button>
       </>
     );
   }
