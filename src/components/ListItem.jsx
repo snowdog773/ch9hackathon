@@ -5,20 +5,13 @@ const ListItem = (props) => {
   const { title, date, recurring, info } = props.eventData;
   const [countdown, setCountdown] = useState();
 
-  const calculateDiff = (currentTime = props.currentTime) => {
-    const unixDate = new Date(date).getTime() - currentTime;
+  const calculateDiff = () => {
+    const unixDate = new Date(date).getTime() - props.currentTime;
     const convertedTime = subtractTime(unixDate);
     setCountdown(convertedTime);
   };
 
-  const timer = () => {
-    setInterval(() => {
-      const updatedTime = new Date().getTime();
-      calculateDiff(updatedTime);
-    }, 100);
-  };
-
-  useEffect(() => timer(), []);
+  useEffect(() => calculateDiff(), [countdown]);
 
   const getDate = (date) => {
     const newFormat = new Date(date).toLocaleDateString("en-GB", {

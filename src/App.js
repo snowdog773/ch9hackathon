@@ -5,10 +5,13 @@ import logo__banner from "./assets/logo_banner_v4.png";
 import "./App.css";
 
 class App extends Component {
-  state = { event: [], currentTime: undefined };
+  state = { event: [], currentTime: Date.now() };
 
   componentDidMount() {
-    this.setState({ currentTime: Date.now() });
+    setInterval(() => {
+      const updatedTime = new Date().getTime();
+      this.setState({ currentTime: updatedTime });
+    }, 100);
   }
 
   getEvent = (data) => {
@@ -27,7 +30,6 @@ class App extends Component {
     return spread.map((e, index) => {
       return (
         <ListItem
-          index={index}
           eventData={e}
           key={index}
           currentTime={this.state.currentTime}
